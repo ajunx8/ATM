@@ -1,4 +1,3 @@
-
 console.log('is this JS working?');
 
 $(document).ready( function () {
@@ -9,17 +8,11 @@ $(document).ready( function () {
     let $savingsBalance = parseInt( $('#savings-balance').html().slice(1) );
     
     // * Add functionality so that a user can deposit money into one of the bank accounts.
-
-    // const checkValue = function () {
-
-    // }
     
     $('#checking-deposit').on('click', function () {
         let amount = $('#checking-amount').val();
-        if ( isNaN(amount) ) {
+        if ( isNaN(amount) || amount < 0 ) {
             alert('This is an invalid input');
-        } else if ( amount < 0 ) {  
-            alert('Cannot deposit negative amount');
         } else {
             $checkingBalance += parseInt( amount );
             $('#checking-balance').html(`$${ $checkingBalance }`);
@@ -30,10 +23,8 @@ $(document).ready( function () {
 
     $('#savings-deposit').on('click', function () {
         let amount = $('#savings-amount').val();
-        if ( isNaN(amount) ) {
+        if ( isNaN(amount) || amount < 0 ) {
             alert('This is an invalid input');
-        } else if ( amount < 0 ) {  
-            alert('Cannot deposit negative amount');
         } else {
             $savingsBalance += parseInt( amount );
             $('#savings-balance').html(`$${ $savingsBalance }`);
@@ -44,10 +35,8 @@ $(document).ready( function () {
 
     $('#checking-withdraw').on('click', function () {
         let amount = $('#checking-amount').val();
-        if ( isNaN(amount) ) {
+        if ( isNaN(amount) || amount < 0 ) {
             alert('This is an invalid input');
-        } else if ( amount < 0 ) {  
-            alert('Cannot withdraw negative amount');
         } else if ( ($checkingBalance + $savingsBalance) < amount ) {
             // console.log( $checkingBalance + $savingsBalance );
             alert('Unable to withdraw: account total is less than withdrawal amount');
@@ -72,10 +61,8 @@ $(document).ready( function () {
 
     $('#savings-withdraw').on('click', function () {
         let amount = $('#savings-amount').val();
-        if ( isNaN(amount) ) {
+        if ( isNaN(amount) || amount < 0 ) {
             alert('This is an invalid input');
-        } else if ( amount < 0 ) {  
-            alert('Cannot withdraw negative amount');
         } else if ( ($checkingBalance + $savingsBalance) < amount ) {
             // console.log( $checkingBalance + $savingsBalance );
             alert('Unable to withdraw: account total is less than withdrawal amount');
